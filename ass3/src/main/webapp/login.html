@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Welcome</title>
+
+		<link rel="stylesheet" type="text/css" href="./css/form.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta charset="utf-8">
+		<meta name ="keywords" content="HTML,CSS,form,welcome,csd,account">
+		<meta name ="description" content="Form Page">
+		<meta name = "author" content="Georgia Rapousi">
+		<meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class = "sign-form">
+            <form>
+                <h1>Login</h1>
+                <input type="text" id ="username"  name="username" placeholder="Username"  pattern="[A-Za-z]{8,}" class="txt" title="At least 8 characters" required>
+                    
+		<div class="passdiv">
+                    <input id = "password" type="password" name="password" placeholder="Password"  pattern="(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,15}" class="txt" onchange = "passwordStrength();" title="Must contain at least 1 character 1 symbol and 1 number from 8-15 " required>
+                    <div class="passicon1">
+			<i id="icon1" class="fa fa-eye-slash"></i>
+                    </div>
+                    <p id  = 'strength'></p>
+		</div>	
+                
+                <input type="submit" value="Login" name="submit" onclick="CheckLogin();" class="submit-btn txt" >
+                <p id="msglogin"></p>
+                
+            </form>
+            
+        </div>
+    </body>
+    <script src = "./js/form.js"></script>
+    <script src = "./js/login.js"></script>
+</html>
