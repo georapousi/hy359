@@ -1,4 +1,4 @@
-
+'use strict';
 
 
 
@@ -6,16 +6,6 @@
 
 var par;
 
-function typeOfUser() {
-    var user; 
-    var tmp = document.getElementByName('user');
-   
-    for(i = 0; i < tmp.length; i++) {
-                if(tmp[i].checked)
-                user = tmp[i].value;
-    }
-    return user;
-}
 
 function radioChecked(par) {
     
@@ -95,21 +85,6 @@ function radioChecked(par) {
  
  
 function RegisterPOST() {
-    /*
-    let form = document.getElementById('loginForm');
-    let formData = new FormData(form);
-    const data = {};
-    getLon;
-    getLat;
-    formData.forEach((value, key) => (data[key] = value));
-   
-    data['lat'] = getLat;
-    data['lon'] = getLon;
-    
-    console.log(data);
-    
-    var jsonData=JSON.stringify(data);
-    */
     
     
     var xhr = new XMLHttpRequest();

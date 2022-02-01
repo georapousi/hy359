@@ -9,6 +9,7 @@ database\tables\EditSimpleUserTable.class
 database\tables\EditBloodTestTable.class
 com\mycompany\ass3\main.class
 mainClasses\Message.class
+servlets\userDetails.class
 mainClasses\User.class
 mainClasses\BloodTest.class
 servlets\GetUser.class

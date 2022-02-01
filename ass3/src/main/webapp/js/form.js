@@ -1,5 +1,6 @@
 //sign up form javascript
 //global vars
+'use strict';
 var password = document.getElementById('password'); 
 var password_confirm = document.getElementById('password_confirm');
 var lat;
@@ -34,7 +35,7 @@ function validatePassword(){
   	console.log(password_confirm.value);
 
   	
-  	if(password.value != password_confirm.value) {
+  	if(password.value !== password_confirm.value) {
 
     document.getElementById('message').innerHTML = "Passwords don't match!";
  
@@ -47,12 +48,12 @@ function validatePassword(){
 }
 
 // display eye on passwords
-var icon1 = document.getElementById('icon1'),
-	icon2 = document.getElementById('icon2');
+var icon1 = document.getElementById('icon1');
+var	icon2 = document.getElementById('icon2');
 
 	icon1.onclick = function () {
 		
-		if (password.className == 'txt'){
+		if (password.className === 'txt'){
 			password.setAttribute('type','text');
 			icon1.className = 'fa fa-eye';
 			password.className = '';
@@ -64,13 +65,13 @@ var icon1 = document.getElementById('icon1'),
 			password.className = 'txt';
 
 		}
-	}
+	};
 
 
-    if(icon2 != null){
+    if(icon2 !== null){
 	icon2.onclick = function () {
 		
-		if (password_confirm.className == 'txt'){
+		if (password_confirm.className === 'txt'){
 			password_confirm.setAttribute('type','text');
 			icon2.className = 'fa fa-eye';
 			password_confirm.className = '';
@@ -82,9 +83,9 @@ var icon1 = document.getElementById('icon1'),
 			password_confirm.className = 'txt';
 
 		}
-	}
+	};
     }
-//password srength
+//password strength
 
 function passwordStrength() {
 
@@ -101,7 +102,7 @@ function passwordStrength() {
 		for(var j=0; j<text.length; j++){
 
 			
-			if(text.charAt(i) == text.charAt(j)){
+			if(text.charAt(i) === text.charAt(j)){
 				
 				counter++;
 			}
@@ -164,7 +165,7 @@ function passwordStrength() {
 
 function toggleDoc(){
 
-	if(document.getElementById('toggle').style.display = "none"){
+	if(document.getElementById('toggle').style.display === "none"){
 		document.getElementById('toggle').style.display = "block";
 
 	}
@@ -173,7 +174,7 @@ function toggleDoc(){
 
 function toggleUser(){
 
-	if(document.getElementById('toggle').style.display = "block"){
+	if(document.getElementById('toggle').style.display === "block"){
 		document.getElementById('toggle').style.display = "none";	
 	}
 	document.getElementsByName('address')[0].placeholder = 'Address';
@@ -250,7 +251,7 @@ function request(){
 
 			console.log(this.responseText);
 
-			if(this.responseText == "{}"){
+			if(this.responseText === "{}"){
 				console.log('No such address');
 				document.getElementById('addressMsg').innerHTML = "No such address";
 
@@ -284,6 +285,7 @@ function request(){
 	xhr.send(data);
 }
 
+//get the lat lon from browser
 function reverseRequest(){
 
 	const data = null;
@@ -295,7 +297,7 @@ function reverseRequest(){
 		if (this.readyState === this.DONE) {
 			console.log(this.responseText);
 
-			if(this.responseText == "{}"){
+			if(this.responseText === "{}"){
 				document.getElementById('autoMsg').innerHTML = "Coordinates Not Found";
 				return;
 			}
@@ -303,7 +305,7 @@ function reverseRequest(){
 			try {
 
 		       var coords =  JSON.parse(this.response);
-		       var address = JSON.parsed(coords.address);
+		       var address = JSON.parse(coords.address);
 
 		       // console.log(JSON.stringify(this.responseText));
 		       console.log('response data?', coords);
@@ -385,10 +387,11 @@ function handler(position, message){
 	map.addPopup(popup);
 }
 
+//shows map from given inputs
 function showMap() {
 
 	
-	if(clicked_openmap == false){
+	if(clicked_openmap === false){
 		document.getElementById('Map').style.display = "block";
 		clicked_openmap = true;
 	}
@@ -397,7 +400,7 @@ function showMap() {
 		clicked_openmap = false;
 	}
 
-	if(flag == false) {
+	if(flag === false) {
 		map = new OpenLayers.Map("Map");
 		var mapnik = new OpenLayers.Layer.OSM();
 		map.addLayer(mapnik);
@@ -428,7 +431,7 @@ function showMap() {
 function autoMap() {
 
 
-	if(clicked_openmap == false){
+	if(clicked_openmap === false){
 		document.getElementById('Map').style.display = "block";
 		clicked_openmap = true;
 	}
@@ -437,7 +440,7 @@ function autoMap() {
 		clicked_openmap = false;
 	}
 
-	if(flag1 == false){
+	if(flag1 === false){
 		map = new OpenLayers.Map("Map");
 		var mapnik = new OpenLayers.Layer.OSM();
 		map.addLayer(mapnik);

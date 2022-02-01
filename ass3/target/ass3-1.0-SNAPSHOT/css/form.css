@@ -113,8 +113,28 @@ body {
 
 
 }
+.login-btn{
+        width: 60px;
+	height: 20px;
+       
+	text-align: center;
+	background:#5F9EA0;
+	color: white;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: 0.5s;
+ 
+        margin-top: 1px;
+        margin-right: 2px;
+        position:absolute;
+        float: right;
+        top:0;
+        right:0;
+    
+    
+}
 
-.submit-btn:hover {
+.login-btn .submit-btn:hover {
 	color: black;
 	transform: scale(0.90);
 }
@@ -141,6 +161,8 @@ body {
     
     display:none;
 }
+
+
 
 /*radio buttons*/
 input.radio { 

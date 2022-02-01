@@ -50,7 +50,7 @@ public class EditSimpleUserTable {
         stmt.executeUpdate(update);
     }
     
-    public void printSimpleUserDetails(String username, String password) throws SQLException, ClassNotFoundException{
+    public void printSimpleUserDetails(String username, String password) throws SQLException, ClassNotFoundException {
          Connection con = DB_Connection.getConnection();
         Statement stmt = con.createStatement();
 
@@ -62,10 +62,12 @@ public class EditSimpleUserTable {
                 DB_Connection.printResults(rs);
             }
 
+
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
         }
+
     }
     
     public SimpleUser databaseToSimpleUser(String username, String password) throws SQLException, ClassNotFoundException{

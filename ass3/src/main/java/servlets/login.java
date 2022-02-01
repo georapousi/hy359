@@ -22,7 +22,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import mainClasses.Doctor;
+import mainClasses.SimpleUser;
 
 /**
  *
@@ -69,31 +71,7 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try {
-            response.setContentType("text/html;charset=UTF-8");
-
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-
-            EditDoctorTable tableDoc = new EditDoctorTable();
-
-            EditSimpleUserTable tableUser = new EditSimpleUserTable();
-
-            if (tableUser.databaseToSimpleUser(username, password) == null
-                    && tableDoc.databaseToDoctor(username, password) == null) {
-
-                response.setStatus(200);
-
-            } else {
-                response.setStatus(409);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
 
     }
 
@@ -108,7 +86,42 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        HttpSession session = request.getSession(true);
+            System.out.println("username="+username);
+            System.out.println("password="+password);
+
+        try(PrintWriter out = response.getWriter()){
+           
+
+            
+            EditDoctorTable tableDoc = new EditDoctorTable();
+            Doctor doc = tableDoc.databaseToDoctor(username, password);
+            EditSimpleUserTable tableUser = new EditSimpleUserTable();
+            SimpleUser user = tableUser.databaseToSimpleUser(username, password);
+            System.out.println("Before " + username + " " + password);
+
+            
+            if (doc == null && user == null) {
+                
+                System.out.println(tableUser.databaseToSimpleUser(username, password));
+                System.out.println(tableDoc.databaseToDoctor(username, password));
+                response.setStatus(409);
+
+            } else {
+
+                session.setAttribute("login", username);
+                response.setStatus(200);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
