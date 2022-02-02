@@ -77,6 +77,8 @@ public class EditDoctorTable {
             String json = DB_Connection.getResultsToJSON(rs);
             Gson gson = new Gson();
             Doctor doc = gson.fromJson(json, Doctor.class);
+            stmt.close();
+            con.close();
             return doc;
         } catch (Exception e) {
             System.err.println("Got an exception! ");
@@ -96,6 +98,8 @@ public class EditDoctorTable {
                 String json = DB_Connection.getResultsToJSON(rs);
                 Gson gson = new Gson();
                 Doctor doc = gson.fromJson(json, Doctor.class);
+                stmt.close();
+                con.close();
                 return doc;
 
             }
@@ -118,6 +122,8 @@ public class EditDoctorTable {
             Gson gson = new Gson();
             Doctor doc = gson.fromJson(json, Doctor.class);
             System.out.println(json);
+            stmt.close();
+            con.close();
             return doc;
         } catch (Exception e) {
             System.err.println("Got an exception! ");
@@ -141,6 +147,8 @@ public class EditDoctorTable {
                 Doctor doc = gson.fromJson(json, Doctor.class);
                 doctors.add(doc);
             }
+            stmt.close();
+            con.close();
             return doctors;
 
         } catch (Exception e) {
@@ -159,6 +167,8 @@ public class EditDoctorTable {
             rs = stmt.executeQuery("SELECT * FROM doctors WHERE username = '" + username + "' AND password='" + password + "'");
             rs.next();
             String json = DB_Connection.getResultsToJSON(rs);
+            stmt.close();
+            con.close();
             return json;
         } catch (Exception e) {
             System.err.println("Got an exception! ");

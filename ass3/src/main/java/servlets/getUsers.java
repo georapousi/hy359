@@ -10,7 +10,10 @@ import com.google.gson.JsonArray;
 import database.tables.EditSimpleUserTable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -98,15 +101,16 @@ public class getUsers extends HttpServlet {
 
         EditSimpleUserTable edt = new EditSimpleUserTable();
         ArrayList<SimpleUser> users = null;
-        /*
+
         try {
             users = edt.databaseToSimpleUsers();
 
         } catch (SQLException ex) {
+
             Logger.getLogger(getUsers.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(getUsers.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
         Gson gson = new Gson();
         JsonArray jsonUser = gson.toJsonTree(users).getAsJsonArray();
         System.out.println("Users\n" + jsonUser + "\n");

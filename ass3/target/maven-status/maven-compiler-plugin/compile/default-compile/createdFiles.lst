@@ -2,6 +2,7 @@ database\tables\EditDoctorTable.class
 servlets\login.class
 mainClasses\Doctor.class
 database\tables\EditRandevouzTable.class
+servlets\getUserLoc.class
 mainClasses\Treatment.class
 database\DB_Connection.class
 mainClasses\JSON_Converter.class

@@ -29,7 +29,7 @@ and open the template in the editor.
             <a class="active" href="#home">Home</a>
             <a href="#account" onclick='accountEdit()'>My Account</a>
             <a href="#health" onclick="getBMI() , getIdealWeight()" >Check my Health</a>
-            <a href="#exams" onclick = 'addAmka() ,getExam()' >Exams</a>
+            <a href="#exams" onclick = 'addAmka() ,getExam() ,getUserLocation()' >Exams</a>
         </div><br>
         
         <div id='home'>
@@ -361,6 +361,10 @@ and open the template in the editor.
             
             <div id='lastExams'>
                 
+            </div >
+            
+            <div id='docLoc'>
+                
             </div>
         </div>
         
@@ -387,7 +391,17 @@ and open the template in the editor.
         </div>
         
         
-        
+        <div id="footer">
+		<footer class=" p-3 mb-2 bg-light text-dark">
+                    
+                <ol>
+                    <li ><a  class = "alist btn btn-link " href = "https://www.vrisko.gr/efimeries-farmakeion/irakleio/">Open Pharmacies</a></li>
+                    <li ><a class = "alist btn btn-link " href="https://www.vrisko.gr/efimeries-nosokomeion/hrakleio/genikh-efhmeria/">On Duty Hospitals</a></li>
+
+                </ol>
+     		<p>©Copyright 2050 by GR. All rights reversed.</p>	
+     		</footer>
+        </div>
         
     </body>
 

@@ -5,6 +5,11 @@ var weight;
 var height;
 var gender;
 var amka;
+var coordinates;
+var userLat;
+var userLon;
+var coorlist;
+
 
 function CheckLogin(){
      
@@ -24,6 +29,7 @@ function CheckLogin(){
             document.getElementById('logout-btn').style.display = 'block';
             document.getElementById('navbar').style.display = 'block';
             document.getElementById('msgwelcome').innerHTML = 'Welcome';
+            document.getElementById('footer').style.display = 'none';
             
             
             
@@ -55,6 +61,7 @@ function accountEdit(){
             document.getElementById('account').style.display = 'block ';
             document.getElementById('msghealth').style.display = 'none';
             document.getElementById('msgideal').style.display = 'none';
+            document.getElementById('exam').style.display = 'none';
             
             var json = JSON.parse(xhr.response);
             
@@ -165,6 +172,9 @@ function getBMI(){
     xhr.withCredentials = true;
     
     document.getElementById('msghealth').style.display='block';
+     document.getElementById('exam').style.display = 'none';
+
+    
     
     if(weight == null) {
         weight = document.getElementById('weight').value;
@@ -247,6 +257,9 @@ function addAmka(){
     document.getElementById('exam').style.display = 'block'
     document.getElementById('health').style.display = 'none';
     document.getElementById('account').style.display = 'none';
+    document.getElementById('footer').style.display = 'none';
+    
+    
     
 }
 
@@ -352,3 +365,130 @@ function getExam(){
     
     
 }
+
+function getUserLocation(){
+    var xhr = new XMLHttpRequest(); 
+    
+    var username = document.getElementById('username').value;
+    console.log("THIS IS USERNAME LOCATION :" +username);
+    
+     xhr.onload = function () {
+         
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            
+            var json = xhr.response;
+            let obj = JSON.parse(json);
+            console.log(json);
+            userLat = obj.lat;
+            userLon = obj.lon;
+                                 
+           getDoctorsList();
+           
+        }else if (xhr.status !== 200) {
+            console.log("Error trying to find user's location");
+        }
+    };
+
+    xhr.open('GET','getUserLoc?username='+username );
+    xhr.send();
+    
+    
+}
+
+function getDoctorsList(){
+    var xhr = new XMLHttpRequest(); 
+
+    xhr.onload = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+
+            var json = xhr.response;
+            let obj = JSON.parse(json);
+            console.log(obj);
+            var length = obj.length;
+            coordinates = [];
+            var dis =[];
+            coorlist = [];
+            for(var i = 0; i < length; i++) {
+                var info = [];
+                info.push(obj[i].lat,"%2C", obj[i].lon);
+                coordinates.push(info.join(""));
+                
+                
+                console.log(obj[i].firstname," ",obj[i].lastname,":",distance(userLat,obj[i].lat,userLon,obj[i].lon),"<br>");
+
+                coorlist.push(obj[i].firstname," ",obj[i].lastname,":",distance(userLat,obj[i].lat,userLon,obj[i].lon),"<br>");
+
+            }
+            
+            console.log(coordinates.join("%3B"));
+            
+            document.getElementById('docLoc').innerHTML = coorlist.join("");
+            
+            getDoctorsLocation();
+        }else if (xhr.status !== 200) {
+        }
+    };
+
+    xhr.open('GET','getDoctors' );
+    xhr.send();
+}
+
+function getDoctorsLocation(){
+    
+    const data = null;
+
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        var usercoords = [userLat,userLon];
+        
+        console.log("userLat : "+userLat +"userLot :"+ userLon+ "coordinates : "+coordinates);
+        
+        xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    
+                        console.log(this.response);
+                        
+                        
+                }
+        });
+
+        xhr.open("GET", "https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?origins="+usercoords+"&destinations=" + coordinates.join(";"));
+        xhr.setRequestHeader("x-rapidapi-host", "trueway-matrix.p.rapidapi.com");
+        xhr.setRequestHeader("x-rapidapi-key", "505aa1e186msha079b12fec5c292p13cdbcjsnd29829221d55");
+        xhr.send(null);
+}
+
+
+function distance(lat1,lat2, lon1, lon2)
+    {
+   
+        // The math module contains a function
+        // named toRadians which converts from
+        // degrees to radians.
+        lon1 =  lon1 * Math.PI / 180;
+        lon2 = lon2 * Math.PI / 180;
+        lat1 = lat1 * Math.PI / 180;
+        lat2 = lat2 * Math.PI / 180;
+   
+        // Haversine formula
+        let dlon = lon2 - lon1;
+        let dlat = lat2 - lat1;
+        let a = Math.pow(Math.sin(dlat / 2), 2)
+                 + Math.cos(lat1) * Math.cos(lat2)
+                 * Math.pow(Math.sin(dlon / 2),2);
+               
+        let c = 2 * Math.asin(Math.sqrt(a));
+   
+        // Radius of earth in kilometers. Use 3956
+        // for miles
+        let r = 6371;
+   
+        // calculate the result
+        return(c * r);
+    }
+ 
+ function getCoorDistance(){
+     
+     
+     
+ }

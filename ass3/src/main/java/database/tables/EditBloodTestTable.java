@@ -79,6 +79,8 @@ public class EditBloodTestTable {
                 BloodTest bt = gson.fromJson(json, BloodTest.class);
                 b.add(bt);
             }
+            stmt.close();
+            con.close();
             return b;
         } catch (Exception e) {
             System.err.println("Got an exception! ");
