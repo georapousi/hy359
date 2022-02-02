@@ -113,7 +113,7 @@ body {
 
 
 }
-.login-btn{
+.login-btn .visitor-btn{
         width: 60px;
 	height: 20px;
        
@@ -134,7 +134,7 @@ body {
     
 }
 
-.login-btn .submit-btn:hover {
+.login-btn, .visitor-btn, .submit-btn:hover {
 	color: black;
 	transform: scale(0.90);
 }

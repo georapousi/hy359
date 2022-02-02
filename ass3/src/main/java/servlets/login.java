@@ -101,19 +101,28 @@ public class login extends HttpServlet {
             Doctor doc = tableDoc.databaseToDoctor(username, password);
             EditSimpleUserTable tableUser = new EditSimpleUserTable();
             SimpleUser user = tableUser.databaseToSimpleUser(username, password);
-            System.out.println("Before " + username + " " + password);
+            System.out.println("Before " + username + " " + password + "\n" + user);
 
             
             if (doc == null && user == null) {
                 
-                System.out.println(tableUser.databaseToSimpleUser(username, password));
-                System.out.println(tableDoc.databaseToDoctor(username, password));
+                //System.out.println(tableUser.databaseToSimpleUser(username, password));
+                //System.out.println(tableDoc.databaseToDoctor(username, password));
                 response.setStatus(409);
 
             } else {
-
+                if (doc != null) {
+                    String json = tableDoc.doctorToJSON(tableDoc.databaseToDoctor(username, password));
+                    out.print(json);
+                    response.setStatus(201);
+                } else {
+                    String json = tableUser.simpleUserToJSON(tableUser.databaseToSimpleUser(username, password));
+                    out.print(json);
+                }
+                out.flush();
                 session.setAttribute("login", username);
                 response.setStatus(200);
+                out.close();
             }
 
         } catch (SQLException ex) {

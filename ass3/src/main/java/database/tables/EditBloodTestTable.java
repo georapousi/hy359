@@ -8,11 +8,11 @@ package database.tables;
 import mainClasses.BloodTest;
 import com.google.gson.Gson;
 import database.DB_Connection;
-import mainClasses.SimpleUser;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,6 +57,29 @@ public class EditBloodTestTable {
             Gson gson = new Gson();
             BloodTest bt = gson.fromJson(json, BloodTest.class);
             return bt;
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public ArrayList<BloodTest> databaseToBloodAmka(String amka) throws SQLException, ClassNotFoundException {
+        Connection con = DB_Connection.getConnection();
+        Statement stmt = con.createStatement();
+        ArrayList<BloodTest> b = new ArrayList<>();
+        ResultSet rs;
+        try {
+            rs = stmt.executeQuery("SELECT * FROM bloodtest WHERE amka= '" + amka + "'");
+            System.out.println(amka);
+            while (rs.next()) {
+                String json = DB_Connection.getResultsToJSON(rs);
+                System.out.println("THIS IS MY EXAM" + json);
+                Gson gson = new Gson();
+                BloodTest bt = gson.fromJson(json, BloodTest.class);
+                b.add(bt);
+            }
+            return b;
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());

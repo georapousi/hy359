@@ -5,8 +5,12 @@ database\tables\EditRandevouzTable.class
 mainClasses\Treatment.class
 database\DB_Connection.class
 mainClasses\JSON_Converter.class
+servlets\updateUser.class
+servlets\addExam.class
 database\tables\EditSimpleUserTable.class
+servlets\getUsers.class
 database\tables\EditBloodTestTable.class
+servlets\getDoctors.class
 com\mycompany\ass3\main.class
 mainClasses\Message.class
 servlets\userDetails.class

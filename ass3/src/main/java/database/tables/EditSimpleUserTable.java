@@ -41,15 +41,87 @@ public class EditSimpleUserTable {
         return json;
     }
     
-   
-    
-    public void updateSimpleUser(String username,double weight) throws SQLException, ClassNotFoundException{
+
+    public void updateSimpleUser(String username, String password, String email, String firstname, String telephone,
+            String lastname, String amka, String sex, String country, String city, String address,
+            int height, double weight, int blooddonor, String bloodtype, int birthdate, String gender) throws SQLException, ClassNotFoundException {
+
         Connection con = DB_Connection.getConnection();
         Statement stmt = con.createStatement();
-        String update="UPDATE users SET weight='"+weight+"' WHERE username = '"+username+"'";
+
+        String update = "UPDATE users SET height='" + height + "' WHERE username = '" + username + "'";
         stmt.executeUpdate(update);
+
+        update = "UPDATE users SET lastname='" + lastname + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET firstname='" + firstname + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET address='" + address + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET country='" + country + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET telephone='" + telephone + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET blooddonor='" + blooddonor + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET bloodtype='" + bloodtype + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET password='" + password + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET weight='" + weight + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET email='" + email + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET city='" + city + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+//        update = "UPDATE users SET birthdate='" + birthdate + "' WHERE username = '" + username + "'";
+//        stmt.executeUpdate(update);
+
+        update = "UPDATE users SET gender='" + gender + "' WHERE username = '" + username + "'";
+        stmt.executeUpdate(update);
+
+        stmt.close();
+        con.close();
     }
-    
+
+
+
+    /* public void updateSimpleUserNew(String username, String password, String email, String firstname, String telephone,
+            String lastname, String amka, String sex, String country, String city, String address,
+            int height, double weight, boolean blooddonor, String bloodtype) throws SQLException, ClassNotFoundException {
+
+            Connection con = DB_Connection.getConnection();
+            Statement stmt = con.createStatement();
+            StringBuilder update = new StringBuilder();
+
+            update.append("UPDATE users SET")
+                    .append("weight = ").append("'").append(weight).append("'")
+                    .append(" height = ").append("'").append(Integer.toString(height)).append("',")
+                    .append(" password = ").append("'").append(password).append("',")
+                    .append(" email = ").append("'").append(email).append("',")
+                    .append(" telephone = ").append("'").append(telephone).append("',")
+                    .append(" country = ").append("'").append(country).append("',")
+                    .append(" firstname = ").append("'").append(firstname).append("',")
+                    .append(" lastname = ").append("'").append(lastname).append("',")
+                    .append(" city = ").append("'").append(city).append("',")
+                    .append(" address = ").append("'").append(address).append("',")
+                    .append(" blooddonor = ").append("'").append(blooddonor).append("'")
+                    .append(" WHERE username = ").append("'").append(username).append("';");
+
+        stmt.executeUpdate(update.toString());
+    }
+*/
     public void printSimpleUserDetails(String username, String password) throws SQLException, ClassNotFoundException {
          Connection con = DB_Connection.getConnection();
         Statement stmt = con.createStatement();
@@ -83,12 +155,30 @@ public class EditSimpleUserTable {
             SimpleUser user = gson.fromJson(json, SimpleUser.class);
             return user;
         } catch (Exception e) {
-            System.err.println("Got an exception! ");
+            System.err.println("IN EDITSIMPLEUSERTABLE Got an exception! ");
             System.err.println(e.getMessage());
         }
         return null;
     }
+    public SimpleUser databaseToSimpleUserEmail(String username, String email) throws SQLException, ClassNotFoundException {
+        Connection con = DB_Connection.getConnection();
+        Statement stmt = con.createStatement();
 
+        ResultSet rs;
+        try {
+            rs = stmt.executeQuery("SELECT * FROM users  WHERE email = '" + email + "'");
+            if (rs.next() == true) {
+                String json = DB_Connection.getResultsToJSON(rs);
+                Gson gson = new Gson();
+                SimpleUser user = gson.fromJson(json, SimpleUser.class);
+                return user;
+            }
+        } catch (Exception e) {
+            System.err.println("IN EDITSIMPLEUSERTABLE Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
     public SimpleUser SimpleUserExistsUsername(String username) throws SQLException, ClassNotFoundException {
         Connection con = DB_Connection.getConnection();
         Statement stmt = con.createStatement();

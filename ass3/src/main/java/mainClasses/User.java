@@ -6,6 +6,7 @@
 
 package mainClasses;
 
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,8 @@ public class User {
     double weight;
     int blooddonor;
     String bloodtype;
+    ArrayList<BloodTest> exams;
+
     
     public String getAddress() {
         return address;

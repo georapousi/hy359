@@ -6,6 +6,7 @@
 package servlets;
 
 import database.tables.EditSimpleUserTable;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -81,11 +82,19 @@ public class userDetails extends HttpServlet {
 
         try ( PrintWriter out = response.getWriter()) {
 
-            response.setContentType("text/html;charset=UTF-8");
+            response.setContentType("application/json");
+            BufferedReader bf = request.getReader();
 
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
+            String username, password;
+
+            username = bf.readLine();
+            password = bf.readLine();
+
+            System.out.println(username + " " + password);
+
             HttpSession session = request.getSession(true);
+
+            System.out.println("Looking for " + username + "," + password);
 
             EditSimpleUserTable tableUser = new EditSimpleUserTable();
             SimpleUser user = tableUser.databaseToSimpleUser(username, password);
@@ -93,12 +102,16 @@ public class userDetails extends HttpServlet {
             String json = tableUser.simpleUserToJSON(user);
 
             out.println(json);
+            out.flush();
 
             response.setStatus(200);
+            out.close();
 
         } catch (SQLException ex) {
+            System.out.println("SQL EXCEPTION!");
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
+            System.out.println("Class excpetion!");
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
 

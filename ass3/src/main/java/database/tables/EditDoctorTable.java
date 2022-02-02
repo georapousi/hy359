@@ -85,6 +85,27 @@ public class EditDoctorTable {
         return null;
     }
 
+    public Doctor databaseToDoctorEmail(String username, String email) throws SQLException, ClassNotFoundException {
+        Connection con = DB_Connection.getConnection();
+        Statement stmt = con.createStatement();
+
+        ResultSet rs;
+        try {
+            rs = stmt.executeQuery("SELECT * FROM doctors WHERE email = '" + email + "'");
+            if (rs.next() == true) {
+                String json = DB_Connection.getResultsToJSON(rs);
+                Gson gson = new Gson();
+                Doctor doc = gson.fromJson(json, Doctor.class);
+                return doc;
+
+            }
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
+
     public Doctor DoctorExistsUsername(String username) throws SQLException, ClassNotFoundException {
         Connection con = DB_Connection.getConnection();
         Statement stmt = con.createStatement();
