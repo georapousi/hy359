@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Disco Plateau">
+        <link rel="stylesheet" type="text/css" href="./css/doctor.css">
+        <script src = "./js/doctor.js"></script>
+    </head>
+    <body>
+        <div id="update">
+            <h2 id="header" class="txt">Update Info</h2>
+            <input type="text" id ="username" name="username" placeholder="Username"  pattern="[A-Za-z]{8,}" class="txt" title="At least 8 characters">
+            <input id = "password" type="password" name="password" placeholder="Password"  pattern="(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,15}" class="txt"  title="Must contain at least 1 character 1 symbol and 1 number from 8-15 ">
+            <input type="text" id ="email"  name="email" placeholder="Email" class="txt">
+            <input type="text" id="telephone"  name="telephone" placeholder="Phone" pattern="[0-9]{0,14}" class="txt" >
+            <input type="number" id="height" name="height" placeholder="Height (100-250)" min="100" max="250" class="txt">
+            <input type="number" id="weight" name="weight" placeholder="Weight (20-300)" min="20" max="300"  class="txt">
+            <button id="submitbut" class="txt" onclick="updateValues()">Submit</button>
+        </div>
+    </body>
+</html>

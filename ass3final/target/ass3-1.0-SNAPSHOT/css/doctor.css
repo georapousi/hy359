@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 2, 2022, 4:12:16 PM
+    Author     : Disco Plateau
+*/
+body{
+    background: url("../form.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#update{
+    display: grid;
+    margin: auto;
+}
+#height{
+    width: 150px;
+}
+
+#weight{
+    width: 150px;
+}
+
+#submitbut{
+    width: 150px;
+    background: #009999;
+    color: white;
+}
+
+#header{
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    color: white;
+}
+.txt{
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+ 

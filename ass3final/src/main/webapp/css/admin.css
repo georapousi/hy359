@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 1, 2022, 6:54:47 PM
+    Author     : Disco Plateau
+*/
+body{
+    background: url("../form.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h2{
+    text-align: center;
+}
+
+#line1{
+    background: black;
+    border: 1px solid black;
+    transform: rotate(0deg);
+    width: 100%;
+    margin-top: 15px;
+}
+
+#line2{
+    background: black;
+    border: 1px solid black;
+    transform: rotate(0deg);
+    width: 100%;
+    margin-top: 15px;
+}
+
+#listdel{
+    text-align: center;
+    color: white;
+}
+
+#certdoc{
+    text-align: center;
+    color: white;
+}
+
+#userdel{
+    text-align: center;
+    color: white;
+}
+
+.screens{
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    width: 300px;
+    background: #009999;
+}
+
+button{
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    background: #009999;
+    color: white;
+}
+
+.refbut{
+    margin-left: 176px;
+    margin-top: 5px;
+}
+
