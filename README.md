@@ -28,9 +28,6 @@ The project runs on Netbeans so before installing program will be needed:
 * Simply Build and Run 
 
 
-## Help
-A database is not connected with the project so some function may not be completed
-
 ## Authors
 
 This is a project based on an assigment requested by my professor ,so the source packages have been created by him and finilized by me and the whole web pages are by me.
