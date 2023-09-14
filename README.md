@@ -1,13 +1,17 @@
-# Sign in and register site for a patient/doctor 
+# Signup/Signin website for patient and doctors
 
-A user can register or sign in to his account or have visitor info 
+Within this website patients and doctors can view and update personal information
 
 ## Description
 
-A user must first register and fill in personal info that are saved to DB (fullname ,email, AMKA, bloodtype etc.)
-After registration can login and update any personal info, check last exams and add new as well and check health based on BMI and ideal weight.
-If the user is a doctor can only update his personal info.
-A simple user can get info about doctors nearby(from the DB) and for on duty pharmacies and hospitals.
+Initially a patient will need to sign up and complete a personal information form  that will be saved to DB (fullname ,email, AMKA, blood type , email, gender, dob etc.) 
+The sign up flow for the a doctor is slightly different to a patient. Doctors will need to additionally provide speciality. 
+
+After a successful registration, users could login and update any personal information that was provided on sign up and also check last examinations/tests results and add new results too. 
+Patients could check health based on BMI and ideal weight.
+
+ If the user is a doctor can only update his personal info will not be able to add examinations.
+ A patient user can get info about doctors nearby(from the DB) and for on duty pharmacies and hospitals.
 
 ## Getting Started
 
@@ -17,10 +21,7 @@ The project runs on Netbeans so before installing program will be needed:
 * mysql-connector-java.jar
 * javaee-web-api.jer
 * json-simple.jar
-
-
-### Connections
-A Database connection will be needed for the project
+* Database connection will be needed for the project
 
 
 ### Executing program
@@ -33,7 +34,7 @@ A database is not connected with the project so some function may not be complet
 
 ## Authors
 
-This is a project based on an assigment requested by my professor  ,so the source packages have been created by him and finilized by me and the whole web pages are by me.
+This is a project based on an assigment requested by my professor ,so the source packages have been created by him and finilized by me and the whole web pages are by me.
 
 
 
