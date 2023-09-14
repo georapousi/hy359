@@ -6,12 +6,10 @@ Within this website patients and doctors can view and update personal informatio
 
 Initially a patient will need to sign up and complete a personal information form  that will be saved to DB (fullname ,email, AMKA, blood type , email, gender, dob etc.) 
 The sign up flow for the a doctor is slightly different to a patient. Doctors will need to additionally provide speciality. 
-
 After a successful registration, users could login and update any personal information that was provided on sign up and also check last examinations/tests results and add new results too. 
 Patients could check health based on BMI and ideal weight.
-
- If the user is a doctor can only update his personal info will not be able to add examinations.
- A patient user can get info about doctors nearby(from the DB) and for on duty pharmacies and hospitals.
+If the user is a doctor can only update his personal info will not be able to add examinations.
+A patient user can get info about doctors nearby(from the DB) and for on duty pharmacies and hospitals.
 
 ## Getting Started
 
