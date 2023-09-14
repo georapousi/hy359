@@ -9,6 +9,7 @@ The sign up flow for the a doctor is slightly different to a patient. Doctors wi
 After a successful registration, users could login and update any personal information that was provided on sign up and also check last examinations/tests results and add new results too. 
 Patients could check health based on BMI and ideal weight.
 If the user is a doctor can only update his personal info will not be able to add examinations.
+
 A patient user can get info about doctors nearby(from the DB) and for on duty pharmacies and hospitals.
 
 ## Getting Started
